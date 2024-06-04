@@ -74,7 +74,7 @@ const mockSearchResults = [
     { title: 'Rebound', url: 'Silent Sanctuary - Rebound (Lyrics) (320).mp3' },
     { title: 'Heaven Knows', url: 'Orange & Lemons - Heaven Knows (This Angel Has Flown) (Official Music Video) (320).mp3' },
     { title: 'You\'ll Be Safe Here', url: 'You\'ll Be Safe Here - Rivermaya (You\'ll Be Safe Here Rivermaya Lyrics) (320).mp3' },
-    { title: 'Pantropiko By:BINI',url:BINI - Pantropiko(MP3_70K).mp3}
+    { title: 'Pantropiko By:BINI',url:BINI - Pantropiko(MP3_70K).mp3},
 ];
 
 searchBar.addEventListener('input', () => {
