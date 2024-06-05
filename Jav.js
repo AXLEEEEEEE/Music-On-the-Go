@@ -1,4 +1,5 @@
- const audioPlayer = document.getElementById('audioPlayer');
+ 
+const audioPlayer = document.getElementById('audioPlayer');
 const playPauseBtn = document.getElementById('playPauseBtn');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
@@ -78,6 +79,7 @@ const mockSearchResults = [
     { title: 'BINI-Salamin_Salamin',url:'BINI - Salamin_ Salamin(MP3_70K).mp3'},
     { title: 'BINI-Karera', url:'BINI - Karera (Lyrics)(MP3_70K).mp3'},
     { title: 'ColdPlay-Viva la Vida', url:'Viva la Vida (Lyrics) - Coldplay(MP3_70K).mp3'},
+    { title: 'The Weeknd-Reminder',url:'The Weeknd - Reminder (Lyrics)(MP3_70K).mp3'},
 ];
 
 searchBar.addEventListener('input', () => {
@@ -107,3 +109,4 @@ prevBtn.addEventListener('click', playPrev);
 if (songs.length > 0) {
     loadSong(currentSongIndex);
 }
+
