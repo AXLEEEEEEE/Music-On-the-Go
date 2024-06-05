@@ -1,4 +1,4 @@
-const audioPlayer = document.getElementById('audioPlayer');
+ const audioPlayer = document.getElementById('audioPlayer');
 const playPauseBtn = document.getElementById('playPauseBtn');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
@@ -74,7 +74,10 @@ const mockSearchResults = [
     { title: 'Rebound', url: 'Silent Sanctuary - Rebound (Lyrics) (320).mp3' },
     { title: 'Heaven Knows', url: 'Orange & Lemons - Heaven Knows (This Angel Has Flown) (Official Music Video) (320).mp3' },
     { title: 'You\'ll Be Safe Here', url: 'You\'ll Be Safe Here - Rivermaya (You\'ll Be Safe Here Rivermaya Lyrics) (320).mp3' },
-    { title: 'Pantropiko By:BINI',url: Pantropiko(MP3_70K).mp3},
+    { title: 'BINI-Pantropiko',url:'BINI - Pantropiko(MP3_70K).mp3'},
+    { title: 'BINI-Salamin_Salamin',url:'BINI - Salamin_ Salamin(MP3_70K).mp3'},
+    { title: 'BINI-Karera', url:'BINI - Karera (Lyrics)(MP3_70K).mp3'},
+    { title: 'ColdPlay-Viva la Vida', url:'Viva la Vida (Lyrics) - Coldplay(MP3_70K).mp3'},
 ];
 
 searchBar.addEventListener('input', () => {
