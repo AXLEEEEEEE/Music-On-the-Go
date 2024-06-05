@@ -1,5 +1,4 @@
- 
-const audioPlayer = document.getElementById('audioPlayer');
+ const audioPlayer = document.getElementById('audioPlayer');
 const playPauseBtn = document.getElementById('playPauseBtn');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
@@ -56,6 +55,28 @@ function addToPlaylist(song) {
     li.classList.add('list-group-item', 'bg-dark', 'text-white');
     li.dataset.index = songs.length - 1;
     li.dataset.url = song.url;
+
+    const removeBtn = document.createElement('button');
+    removeBtn.textContent = '❌';
+    removeBtn.classList.add('btn', 'btn-danger', 'btn-sm', 'ms-2');
+    removeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();  // Prevent triggering the li click event
+        const index = parseInt(li.dataset.index);
+        songs.splice(index, 1);
+        li.remove();
+        updatePlaylist();
+        if (index === currentSongIndex && songs.length > 0) {
+            loadSong(0);
+            audioPlayer.play();
+        } else if (songs.length === 0) {
+            audioPlayer.pause();
+            audioPlayer.src = '';
+            currentSongElement.textContent = 'Now Playing: None';
+            playPauseBtn.textContent = '⏯️';
+        }
+    });
+
+    li.appendChild(removeBtn);
     li.addEventListener('click', () => {
         currentSongIndex = parseInt(li.dataset.index);
         loadSong(currentSongIndex);
@@ -68,6 +89,13 @@ function addToPlaylist(song) {
     }
 }
 
+function updatePlaylist() {
+    const playlistItems = document.querySelectorAll('.playlist li');
+    playlistItems.forEach((item, index) => {
+        item.dataset.index = index;
+    });
+}
+
 // Simulate search results from an API
 const mockSearchResults = [
     { title: 'Cool Down', url: 'Kolohe Kai - Cool Down (320).mp3' },
@@ -75,15 +103,15 @@ const mockSearchResults = [
     { title: 'Rebound', url: 'Silent Sanctuary - Rebound (Lyrics) (320).mp3' },
     { title: 'Heaven Knows', url: 'Orange & Lemons - Heaven Knows (This Angel Has Flown) (Official Music Video) (320).mp3' },
     { title: 'You\'ll Be Safe Here', url: 'You\'ll Be Safe Here - Rivermaya (You\'ll Be Safe Here Rivermaya Lyrics) (320).mp3' },
-    { title: 'BINI-Pantropiko',url:'BINI - Pantropiko(MP3_70K).mp3'},
-    { title: 'BINI-Salamin_Salamin',url:'BINI - Salamin_ Salamin(MP3_70K).mp3'},
-    { title: 'BINI-Karera', url:'BINI - Karera (Lyrics)(MP3_70K).mp3'},
-    { title: 'ColdPlay-Viva la Vida', url:'Viva la Vida (Lyrics) - Coldplay(MP3_70K).mp3'},
-    { title: 'The Weeknd-Reminder',url:'The Weeknd - Reminder (Lyrics)(MP3_70K).mp3'},
-    { title: '7/11-Toneejay',url:'7_11 ( Lyrics ) - Toneejay(MP3_70K).mp3'},
-    { title: 'Cup of Joe_ Janine Teñoso - Tingin',url: 'Cup of Joe_ Janine Teñoso - Tingin (Lyrics)(MP3_70K).mp3'},
-    { title: 'Juan Karlos - Ere',url:'Juan Karlos - Ere (Lyrics)(MP3_70K).mp3'},
-    { title: 'Katy Perry - Last Friday Night',url: 'Katy Perry - Last Friday Night (T.G.I.F) _lirik lagu(MP3_70K).mp3'},
+    { title: 'BINI-Pantropiko', url: 'BINI - Pantropiko(MP3_70K).mp3' },
+    { title: 'BINI-Salamin_Salamin', url: 'BINI - Salamin_ Salamin(MP3_70K).mp3' },
+    { title: 'BINI-Karera', url: 'BINI - Karera (Lyrics)(MP3_70K).mp3' },
+    { title: 'ColdPlay-Viva la Vida', url: 'Viva la Vida (Lyrics) - Coldplay(MP3_70K).mp3' },
+    { title: 'The Weeknd-Reminder', url: 'The Weeknd - Reminder (Lyrics)(MP3_70K).mp3' },
+    { title: '7/11-Toneejay', url: '7_11 ( Lyrics ) - Toneejay(MP3_70K).mp3' },
+    { title: 'Cup of Joe_ Janine Teñoso - Tingin', url: 'Cup of Joe_ Janine Teñoso - Tingin (Lyrics)(MP3_70K).mp3' },
+    { title: 'Juan Karlos - Ere', url: 'Juan Karlos - Ere (Lyrics)(MP3_70K).mp3' },
+    { title: 'Katy Perry - Last Friday Night', url: 'Katy Perry - Last Friday Night (T.G.I.F) _lirik lagu(MP3_70K).mp3' },
 ];
 
 searchBar.addEventListener('input', () => {
@@ -113,4 +141,3 @@ prevBtn.addEventListener('click', playPrev);
 if (songs.length > 0) {
     loadSong(currentSongIndex);
 }
-
