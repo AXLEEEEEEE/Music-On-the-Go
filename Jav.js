@@ -80,6 +80,10 @@ const mockSearchResults = [
     { title: 'BINI-Karera', url:'BINI - Karera (Lyrics)(MP3_70K).mp3'},
     { title: 'ColdPlay-Viva la Vida', url:'Viva la Vida (Lyrics) - Coldplay(MP3_70K).mp3'},
     { title: 'The Weeknd-Reminder',url:'The Weeknd - Reminder (Lyrics)(MP3_70K).mp3'},
+    { title: '7/11-Toneejay',url:'7_11 ( Lyrics ) - Toneejay(MP3_70K).mp3'},
+    { title: 'Cup of Joe_ Janine Teñoso - Tingin',url: 'Cup of Joe_ Janine Teñoso - Tingin (Lyrics)(MP3_70K).mp3'},
+    { title: 'Juan Karlos - Ere',url:'Juan Karlos - Ere (Lyrics)(MP3_70K).mp3'},
+    { title: 'Katy Perry - Last Friday Night',url: 'Katy Perry - Last Friday Night (T.G.I.F) _lirik lagu(MP3_70K).mp3'},
 ];
 
 searchBar.addEventListener('input', () => {
