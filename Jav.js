@@ -126,7 +126,9 @@ const mockSearchResults = [
     { title: 'Mayonnaise - Jopay', url: 'Mayonnaise - Jopay (Lyrics)(MP3_70K).mp3' },
     { title: 'Paraluman - Adie', url: 'Paraluman - Adie (Lyrics)(MP3_70K).mp3' },
     { title: 'Maki - Dilaw', url: 'Maki - Dilaw (Lyrics)(MP3_70K).mp3' },
-];
+    { title: 'Djo - End of Beginning',url:'Djo - End of Beginning (Official Lyric Video) (320).mp3'},
+    { title: 'Greenleech-Wala namang tayo',url:'Wala namang tayo (320).mp3'},
+];  
 
 searchBar.addEventListener('input', () => {
     const query = searchBar.value.toLowerCase();
