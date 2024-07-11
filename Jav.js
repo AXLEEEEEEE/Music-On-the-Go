@@ -1,5 +1,4 @@
- 
-const audioPlayer = document.getElementById('audioPlayer');
+ const audioPlayer = document.getElementById('audioPlayer');
 const playPauseBtn = document.getElementById('playPauseBtn');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
@@ -9,22 +8,33 @@ const searchResults = document.getElementById('searchResults');
 const playlist = document.getElementById('playlist');
 
 let currentSongIndex = 0;
-let songs = [];
-
-async function fetchSongs() {
-    try {
-        const response = await fetch('songs.json'); // Ensure the correct path
-        songs = await response.json();
-        if (songs.length > 0) {
-            loadSong(currentSongIndex);
-            populateSearchResults();
-        } else {
-            console.error('No songs found in the JSON file');
-        }
-    } catch (error) {
-        console.error('Failed to fetch songs:', error);
-    }
-}
+let songs = [
+    { title: 'Cool Down', url: 'Kolohe Kai - Cool Down (320).mp3' },
+    { title: 'Soundtrack by: Greenleech', url: 'SOUNDTRACK - GREENLEECH (reimagined) (320).mp3' },
+    { title: 'Rebound', url: 'Silent Sanctuary - Rebound (Lyrics) (320).mp3' },
+    { title: 'Heaven Knows', url: 'Orange & Lemons - Heaven Knows (This Angel Has Flown) (Official Music Video) (320).mp3' },
+    { title: 'You\'ll Be Safe Here', url: 'You\'ll Be Safe Here - Rivermaya (You\'ll Be Safe Here Rivermaya Lyrics) (320).mp3' },
+    { title: 'BINI-Pantropiko', url: 'BINI - Pantropiko(MP3_70K).mp3' },
+    { title: 'BINI-Salamin_Salamin', url: 'BINI - Salamin_ Salamin(MP3_70K).mp3' },
+    { title: 'BINI-Karera', url: 'BINI - Karera (Lyrics)(MP3_70K).mp3' },
+    { title: 'ColdPlay-Viva la Vida', url: 'Viva la Vida (Lyrics) - Coldplay(MP3_70K).mp3' },
+    { title: 'The Weeknd-Reminder', url: 'The Weeknd - Reminder (Lyrics)(MP3_70K).mp3' },
+    { title: '7/11-Toneejay', url: '7_11 ( Lyrics ) - Toneejay(MP3_70K).mp3' },
+    { title: 'Cup of Joe_ Janine Teñoso - Tingin', url: 'Cup of Joe_ Janine Teñoso - Tingin (Lyrics)(MP3_70K).mp3' },
+    { title: 'Juan Karlos - Ere', url: 'Juan Karlos - Ere (Lyrics)(MP3_70K).mp3' },
+    { title: 'Katy Perry - Last Friday Night', url: 'Katy Perry - Last Friday Night (T.G.I.F) _lirik lagu(MP3_70K).mp3' },
+    { title: 'Adie_ Janine Berdin - Mahika', url: 'Adie_ Janine Berdin - Mahika (Lyrics)(MP3_70K).mp3' },
+    { title: '14 - Silent Sanctuary', url: '14 - Silent Sanctuary (Lyrics)(MP3_70K).mp3' },
+    { title: 'Unti-Unti Up Dharma Down', url: 'Unti-Unti Up Dharma Down udd(MP3_70K).mp3' },
+    { title: 'SunKissed Lola - Pasilyo', url: 'SunKissed Lola - Pasilyo (Lyrics)(MP3_70K).mp3' },
+    { title: 'Silent Sanctuary - Kundiman', url: 'Silent Sanctuary - Kundiman (Official Audio Clip)(MP3_70K).mp3' },
+    { title: 'Palagi - TJ Monterde', url: 'Palagi - TJ Monterde (Lyric Video) _ _dhorynmarimon(MP3_70K).mp3' },
+    { title: 'Mayonnaise - Jopay', url: 'Mayonnaise - Jopay (Lyrics)(MP3_70K).mp3' },
+    { title: 'Paraluman - Adie', url: 'Paraluman - Adie (Lyrics)(MP3_70K).mp3' },
+    { title: 'Maki - Dilaw', url: 'Maki - Dilaw (Lyrics)(MP3_70K).mp3' },
+    { title: 'Djo - End of Beginning', url: 'Djo - End of Beginning (Official Lyric Video) (320).mp3' },
+    { title: 'Greenleech-Wala namang tayo', url: 'Wala namang tayo (320).mp3' },
+];
 
 function loadSong(index) {
     audioPlayer.src = songs[index].url;
@@ -142,9 +152,7 @@ playPauseBtn.addEventListener('click', playPause);
 nextBtn.addEventListener('click', playNext);
 prevBtn.addEventListener('click', playPrev);
 
-window.addEventListener('load', () => {
-    fetchSongs(); // Ensure this is called when the window loads
-});
+populateSearchResults(); // Ensure search results are populated initially
 
 const body = document.body;
 let colorInterval;
