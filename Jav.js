@@ -34,7 +34,7 @@ let songs = [
     { title: 'Maki - Dilaw', url: 'Maki - Dilaw (Lyrics)(MP3_70K).mp3' },
     { title: 'Djo - End of Beginning', url: 'Djo - End of Beginning (Official Lyric Video) (320).mp3' },
     { title: 'Greenleech-Wala namang tayo', url: 'Wala namang tayo (320).mp3' },
-    { title:"Paris-The Chainsmokers", url: "The Chainsmokers - Paris (Lyrics) (320).mp3"}
+    { title: 'Paris-The Chainsmokers', url: 'The Chainsmokers - Paris (Lyrics) (320).mp3'},
 ];
 
 function loadSong(index) {
