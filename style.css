@@ -1,9 +1,6 @@
  
 body {
-    background-image: url('back.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+   
     color: white;
     font-family: 'Poppins', Arial, sans-serif;
     margin: 0;
