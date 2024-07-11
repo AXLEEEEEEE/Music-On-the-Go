@@ -36,25 +36,24 @@
         { title: 'Djo - End of Beginning', url: 'Djo - End of Beginning (Official Lyric Video) (320).mp3' },
         { title: 'Greenleech-Wala namang tayo', url: 'Wala namang tayo (320).mp3' },
         { title: 'Paris-The Chainsmokers', url: 'The Chainsmokers - Paris (Lyrics) (320).mp3'},
-         { title:  'Rose-The Chainsmokers', url:'The Chainsmokers - Roses (Lyric Video) ft. ROZES(MP3_160K).mp3'},
+        { title: 'Rose-The Chainsmokers', url:'The Chainsmokers - Roses (Lyric Video) ft. ROZES(MP3_160K).mp3'},
         { title: 'Closer-The Chainsmokers',url:'The Chainsmokers - Closer (Lyric) ft. Halsey(MP3_160K).mp3'},
-        {title: 'Middle-Dj Snake',url:'DJ Snake ft. Bipolar Sunshine - Middle (Official Audio)(MP3_160K).mp3'},
-        {title: 'Huwag Muna Tayong Umuwi-BINI',url:'BINI - Huwag Muna Tayong Umuwi (Lyrics)(MP3_160K).mp3'},
-        {title: 'Hide Away-Daya',url:'Daya - Hide Away (Lyrics)(MP3_160K).mp3'},
-        {title: 'Dont Stop Believin-Journey',url:'Journey - Don_t Stop Believin_ (Lyrics)(MP3_160K).mp3'},
-        {title: 'Stargazing-Myles Smith',url:'Myles Smith - Stargazing (Lyrics)(MP3_160K).mp3'},
-        {title: 'Maroon 5 - Maps ',url:'Maroon 5 - Maps (Lyric Video)(MP3_160K).mp3'},
-        {title: 'Clarity-Zedd',url:'Zedd - Clarity ft. Foxes(MP3_160K).mp3'}, 
-        {title: 'This Is What You Came For-Calvin Harris Rihanna ',url:'Calvin Harris_ Rihanna - This Is What You Came For (Official Video) ft. Rihanna(MP3_160K).mp3'},
-        {title: 'Cheerleader-OMI',url:'OMI - Cheerleader (Felix Jaehn Remix) (Official Video) [Ultra Records](MP3_160K).mp3'},
-        {title: 'More Than You Know',url:'Axwell __ Ingrosso - More Than You Know(MP3_160K).mp3'},
-        {title: 'By Your Side-Jonas Blue',url:' Jonas Blue - By Your Side ft. RAYE (Official Video)(MP3_160K).mp3  '},
-        {title: 'The Chainsmokers - Don_t Let Me Down ',url:'The Chainsmokers - Don_t Let Me Down (Official Video) ft. Daya(MP3_160K).mp3'},
-        {title: 'Something Just Like This',url:'The Chainsmokers _ Coldplay - Something Just Like This (Lyric)(MP3_160K).mp3'},
-        {title: 'Takeaway',url:'The Chainsmokers_ ILLENIUM - Takeaway (Official Video) ft. Lennon Stella(MP3_160K).mp3'},
-        {title: 'This Feeling',url:'The Chainsmokers - This Feeling (Official Video) ft. Kelsea Ballerini(MP3_160K).mp3'},
-        {title: 'I Like Me Better',url:'Lauv - I Like Me Better [Official Audio](MP3_160K).mp3'},
-        
+        { title: 'Middle-Dj Snake',url:'DJ Snake ft. Bipolar Sunshine - Middle (Official Audio)(MP3_160K).mp3'},
+        { title: 'Huwag Muna Tayong Umuwi-BINI',url:'BINI - Huwag Muna Tayong Umuwi (Lyrics)(MP3_160K).mp3'},
+        { title: 'Hide Away-Daya',url:'Daya - Hide Away (Lyrics)(MP3_160K).mp3'},
+        { title: 'Dont Stop Believin-Journey',url:'Journey - Don_t Stop Believin_ (Lyrics)(MP3_160K).mp3'},
+        { title: 'Stargazing-Myles Smith',url:'Myles Smith - Stargazing (Lyrics)(MP3_160K).mp3'},
+        { title: 'Maroon 5 - Maps ',url:'Maroon 5 - Maps (Lyric Video)(MP3_160K).mp3'},
+        { title: 'Clarity-Zedd',url:'Zedd - Clarity ft. Foxes(MP3_160K).mp3'}, 
+        { title: 'This Is What You Came For-Calvin Harris Rihanna ',url:'Calvin Harris_ Rihanna - This Is What You Came For (Official Video) ft. Rihanna(MP3_160K).mp3'},
+        { title: 'Cheerleader-OMI',url:'OMI - Cheerleader (Felix Jaehn Remix) (Official Video) [Ultra Records](MP3_160K).mp3'},
+        { title: 'More Than You Know',url:'Axwell __ Ingrosso - More Than You Know(MP3_160K).mp3'},
+        { title: 'By Your Side-Jonas Blue',url:'Jonas Blue - By Your Side ft. RAYE (Official Video)(MP3_160K).mp3'},
+        { title: 'The Chainsmokers - Don_t Let Me Down ',url:'The Chainsmokers - Don_t Let Me Down (Official Video) ft. Daya(MP3_160K).mp3'},
+        { title: 'Something Just Like This',url:'The Chainsmokers _ Coldplay - Something Just Like This (Lyric)(MP3_160K).mp3'},
+        { title: 'Takeaway',url:'The Chainsmokers_ ILLENIUM - Takeaway (Official Video) ft. Lennon Stella(MP3_160K).mp3'},
+        { title: 'This Feeling',url:'The Chainsmokers - This Feeling (Official Video) ft. Kelsea Ballerini(MP3_160K).mp3'},
+        { title: 'I Like Me Better',url:'Lauv - I Like Me Better [Official Audio](MP3_160K).mp3'},
     ];
 
     function loadSong(index) {
@@ -89,7 +88,7 @@
 
     function updateCurrentSongDisplay() {
         const currentSongName = songs[currentSongIndex].title;
-        currentSongElement.textContent = Now Playing: ${currentSongName};
+        currentSongElement.textContent = `Now Playing: ${currentSongName}`;
         const playlistItems = document.querySelectorAll('.playlist-item');
         playlistItems.forEach(item => item.classList.remove('playing'));
         if (playlistItems[currentSongIndex]) {
@@ -182,7 +181,7 @@
         const r = Math.floor(Math.random() * 256);
         const g = Math.floor(Math.random() * 256);
         const b = Math.floor(Math.random() * 256);
-        return rgb(${r},${g},${b});
+        return `rgb(${r},${g},${b})`;
     }
 
     function changeBackgroundColor() {
