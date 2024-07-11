@@ -4,44 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music On the Go</title>
-      <link rel="icon" href="Music ON THE GO.png" type="image/x-icon">
+    <link rel="icon" href="Music ON THE GO.png" type="image/x-icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <marquee behavior="scroll" direction="left" style="background-color: transparent; color: white; padding: 10px;"><b>Just Chill and Relax, Enjoy the Music</b></marquee>
-
-    <div class="player-container">
-        <h1><b>MUSIC ON THE GO</b></h1>
-        <div>
-            <div class="mb-3">
-                <input type="text" class="form-control" id="searchBar" placeholder="Search for a song...">
-            </div>
-            <ul class="search-results list-group mb-3" id="searchResults"></ul>
-            <audio id="audioPlayer" class="w-100 mb-3" controls>
-                <source src="" type="audio/mp3">
-                Your browser does not support the audio element.
-            </audio>
-            <div class="current-song mb-3" id="currentSong">Now Playing: </div>
-            <div class="controls mb-3">
-                <button id="prevBtn">⏮️</button>
-                <button id="playPauseBtn">⏯️</button>
-                <button id="nextBtn">⏭️</button>
-            </div>
-            <ul class="playlist list-group" id="playlist">
-                <!-- Playlist items will be dynamically added here -->
-                 
-            </ul>
+    <div class="container">
+        <!-- Replace marquee with CSS for scrolling text -->
+        <div class="scroll-text">
+            <p><b>Just Chill and Relax, Enjoy the Music</b></p>
         </div>
-         
-        <footer><b>You Can Play Your Favorite Music<br>Created By: Axle Deleon</b></footer>
+
+        <div class="player-container">
+            <h1><b>MUSIC ON THE GO</b></h1>
+            <div>
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="searchBar" placeholder="Search for a song...">
+                </div>
+                <ul class="search-results list-group mb-3" id="searchResults"></ul>
+                <audio id="audioPlayer" class="w-100 mb-3" controls>
+                    <source src="" type="audio/mp3">
+                    Your browser does not support the audio element.
+                </audio>
+                <div class="current-song mb-3" id="currentSong">Now Playing: None</div>
+                <div class="controls mb-3">
+                    <button id="prevBtn">⏮️</button>
+                    <button id="playPauseBtn">⏯️</button>
+                    <button id="nextBtn">⏭️</button>
+                </div>
+                <ul class="playlist list-group" id="playlist">
+                    <!-- Playlist items will be dynamically added here -->
+                </ul>
+            </div>
+            <footer><b>You Can Play Your Favorite Music<br>Created By: Axle Deleon</b></footer>
+        </div>
+
+        <!-- Replace marquee with CSS for scrolling text -->
+        <div class="scroll-text">
+            <p><b>Just Chill and Relax, Enjoy the Music</b></p>
+        </div>
     </div>
 
-    <marquee behavior="scroll" direction="right" style="background-color:transparent; color: white; padding: 10px;"><b>Just Chill and Relax, Enjoy the Music</b></marquee>
-
+    <!-- JavaScript dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Your custom JavaScript -->
     <script src="Jav.js"></script>
 </body>
 </html>
