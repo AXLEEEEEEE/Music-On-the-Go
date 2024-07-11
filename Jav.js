@@ -8,7 +8,7 @@
     const searchResults = document.getElementById('searchResults');
     const playlist = document.getElementById('playlist');
 
-    playPauseBtn.style.display = 'none';   
+ 
 
     let currentSongIndex = 0;
     let songs = [
