@@ -8,8 +8,6 @@
     const searchResults = document.getElementById('searchResults');
     const playlist = document.getElementById('playlist');
 
- 
-
     let currentSongIndex = 0;
     let songs = [
         { title: 'Cool Down', url: 'Kolohe Kai - Cool Down (320).mp3' },
@@ -38,7 +36,7 @@
         { title: 'Djo - End of Beginning', url: 'Djo - End of Beginning (Official Lyric Video) (320).mp3' },
         { title: 'Greenleech-Wala namang tayo', url: 'Wala namang tayo (320).mp3' },
         { title: 'Paris-The Chainsmokers', url: 'The Chainsmokers - Paris (Lyrics) (320).mp3'},
-        { title:  'Rose-The Chainsmokers', url:'The Chainsmokers - Roses (Lyric Video) ft. ROZES(MP3_160K).mp3'},
+         { title:  'Rose-The Chainsmokers', url:'The Chainsmokers - Roses (Lyric Video) ft. ROZES(MP3_160K).mp3'},
         { title: 'Closer-The Chainsmokers',url:'The Chainsmokers - Closer (Lyric) ft. Halsey(MP3_160K).mp3'},
         {title: 'Middle-Dj Snake',url:'DJ Snake ft. Bipolar Sunshine - Middle (Official Audio)(MP3_160K).mp3'},
         {title: 'Huwag Muna Tayong Umuwi-BINI',url:'BINI - Huwag Muna Tayong Umuwi (Lyrics)(MP3_160K).mp3'},
@@ -91,7 +89,7 @@
 
     function updateCurrentSongDisplay() {
         const currentSongName = songs[currentSongIndex].title;
-        currentSongElement.textContent = `Now Playing: ${currentSongName}`;
+        currentSongElement.textContent = Now Playing: ${currentSongName};
         const playlistItems = document.querySelectorAll('.playlist-item');
         playlistItems.forEach(item => item.classList.remove('playing'));
         if (playlistItems[currentSongIndex]) {
@@ -111,7 +109,7 @@
         removeBtn.textContent = '❌';
         removeBtn.classList.add('btn', 'btn-danger', 'btn-sm', 'ms-2');
         removeBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); 
+            e.stopPropagation(); // Prevent triggering the li click event
             const index = parseInt(li.dataset.index);
             songs.splice(index, 1);
             li.remove();
@@ -171,10 +169,11 @@
         });
     }
 
+    playPauseBtn.addEventListener('click', playPause);
     nextBtn.addEventListener('click', playNext);
     prevBtn.addEventListener('click', playPrev);
 
-    populateSearchResults(); 
+    populateSearchResults(); // Ensure search results are populated initially
 
     const body = document.body;
     let colorInterval;
@@ -183,7 +182,7 @@
         const r = Math.floor(Math.random() * 256);
         const g = Math.floor(Math.random() * 256);
         const b = Math.floor(Math.random() * 256);
-        return `rgb(${r},${g},${b})`;
+        return rgb(${r},${g},${b});
     }
 
     function changeBackgroundColor() {
