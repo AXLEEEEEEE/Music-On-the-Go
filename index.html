@@ -9,33 +9,41 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <!-- Loading screen overlay -->
+    <div id="loadingScreen" class="loading-screen">
+        <img src="Music ON THE GO.png" alt="Loading..." class="loading-image">
+    </div>
 
-        <div class="player-container">
-            <h1><b>MUSIC ON THE GO</b></h1>
-            <div>
-                <div class="mb-3">
-                    <input type="text" class="form-control" id="searchBar" placeholder="Search for a song...">
-                </div>
-                <ul class="search-results list-group mb-3" id="searchResults"></ul>
-                <audio id="audioPlayer" class="w-100 mb-3" controls>
-                    <source src="" type="audio/mp3">
-                    Your browser does not support the audio element.
-                </audio>
-                <div class="current-song mb-3" id="currentSong">Now Playing: None</div>
-                <div class="controls mb-3">
-                    <button id="prevBtn">⏮️</button>
-                    <button id="playPauseBtn">⏯️</button>
-                    <button id="nextBtn">⏭️</button>
-                </div>
-                <ul class="playlist list-group" id="playlist">
-                    <!-- Playlist items will be dynamically added here -->
-                </ul>
+    <div class="player-container">
+        <img src="Music ON THE GO.png" alt="Music On the Go Logo" class="logo">
+        <h1><b>MUSIC ON THE GO</b></h1>
+        <p>Your favorite music,Anytime,Anywhere.</p>
+        <div>
+            <div class="search-bar-container mb-3">
+                <input type="text" class="form-control" id="searchBar" placeholder="Search for a song...">
             </div>
-            <footer><b>You Can Play Your Favorite Music<br>Created By: Axle Deleon</b></footer>
+            <ul class="search-results list-group mb-3" id="searchResults"></ul>
+            <audio id="audioPlayer" class="w-100 mb-3" hidden>
+                <source src="" type="audio/mp3">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="current-song mb-3" id="currentSong">Now Playing: None</div>
+            <!-- Progress bar and time display -->
+            <div class="progress-container mb-3">
+                <span id="currentTime">0:00</span>
+                <input type="range" id="progressBar" value="0" min="0" step="1">
+                <span id="duration">0:00</span>
+            </div>
+            <div class="controls mb-3">
+                <button id="prevBtn">⏮️</button>
+                <button id="playPauseBtn">⏯️</button>
+                <button id="nextBtn">⏭️</button>
+            </div>
+            <ul class="playlist list-group" id="playlist">
+                <!-- Playlist items will be dynamically added here -->
+            </ul>
         </div>
-
-       
+        <footer><b>You Can Play Your Favorite Music<br>Created By: Axle Deleon</b></footer>
     </div>
 
     <!-- JavaScript dependencies -->
