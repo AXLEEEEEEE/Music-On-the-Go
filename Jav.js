@@ -7,7 +7,10 @@
     const searchBar = document.getElementById('searchBar');
     const searchResults = document.getElementById('searchResults');
     const playlist = document.getElementById('playlist');
-    const loadingScreen = document.getElementById('loadingScreen'); // Ensure this matches the HTML
+    const loadingScreen = document.getElementById('loadingScreen');
+    const progressBar = document.getElementById('progressBar');
+    const currentTime = document.getElementById('currentTime');
+    const duration = document.getElementById('duration');
 
     let currentSongIndex = 0;
     let songs = [
@@ -56,7 +59,6 @@
         { title: 'This Feeling',url:'The Chainsmokers - This Feeling (Official Video) ft. Kelsea Ballerini(MP3_160K).mp3'},
         { title: 'I Like Me Better',url:'Lauv - I Like Me Better [Official Audio](MP3_160K).mp3'},
     ];
-    
 
     function loadSong(index) {
         audioPlayer.src = songs[index].url;
@@ -170,49 +172,26 @@
         });
     }
 
+    function updateProgressBar() {
+        if (audioPlayer.duration) {
+            progressBar.max = audioPlayer.duration;
+            progressBar.value = audioPlayer.currentTime;
+            currentTime.textContent = formatTime(audioPlayer.currentTime);
+            duration.textContent = formatTime(audioPlayer.duration);
+        }
+    }
+
+    function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+    }
+
     playPauseBtn.addEventListener('click', playPause);
     nextBtn.addEventListener('click', playNext);
     prevBtn.addEventListener('click', playPrev);
 
     populateSearchResults();
-
-    const body = document.body;
-    let colorInterval;
-
-    function getRandomColor() {
-        const r = Math.floor(Math.random() * 256);
-        const g = Math.floor(Math.random() * 256);
-        const b = Math.floor(Math.random() * 256);
-        return `rgb(${r},${g},${b})`;
-    }
-
-    function changeBackgroundColor() {
-        body.style.backgroundColor = getRandomColor();
-    }
-
-    audioPlayer.addEventListener('play', () => {
-        colorInterval = setInterval(changeBackgroundColor, 1000);
-    });
-
-    audioPlayer.addEventListener('pause', () => {
-        clearInterval(colorInterval);
-        body.style.backgroundColor = '';
-    });
-
-    audioPlayer.addEventListener('ended', () => {
-        clearInterval(colorInterval);
-        body.style.backgroundColor = '';
-    });
-
-    // Hide loading screen after page loads
-    window.addEventListener('load', () => {
-        console.log('Window loaded, hiding loading screen');
-        if (loadingScreen) {
-            loadingScreen.style.display = 'none';
-        } else {
-            console.log('Loading screen element not found');
-        }
-    });
 
     // Handle search bar animation
     searchBar.addEventListener('focus', () => {
@@ -225,5 +204,30 @@
                 searchBar.classList.remove('expanded');
             }
         }, 200);
+    });
+
+    // Handle progress bar updates
+    audioPlayer.addEventListener('timeupdate', updateProgressBar);
+
+    // Update progress bar when user interacts with it
+    progressBar.addEventListener('input', () => {
+        audioPlayer.currentTime = progressBar.value;
+    });
+
+    // Update progress bar when audio ends
+    audioPlayer.addEventListener('ended', () => {
+        progressBar.value = 0;
+        currentTime.textContent = '0:00';
+        playPauseBtn.textContent = '▶️';
+    });
+
+    // Hide loading screen after page loads
+    window.addEventListener('load', () => {
+        console.log('Window loaded, hiding loading screen');
+        if (loadingScreen) {
+            loadingScreen.style.display = 'none';
+        } else {
+            console.log('Loading screen element not found');
+        }
     });
 });
