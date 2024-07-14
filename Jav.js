@@ -1,4 +1,3 @@
-  
  document.addEventListener('DOMContentLoaded', function() {
     const audioPlayer = document.getElementById('audioPlayer');
     const playPauseBtn = document.getElementById('playPauseBtn');
@@ -8,6 +7,7 @@
     const searchBar = document.getElementById('searchBar');
     const searchResults = document.getElementById('searchResults');
     const playlist = document.getElementById('playlist');
+    const loadingScreen = document.getElementById('loadingScreen'); // Ensure this matches the HTML
 
     let currentSongIndex = 0;
     let songs = [
@@ -56,6 +56,7 @@
         { title: 'This Feeling',url:'The Chainsmokers - This Feeling (Official Video) ft. Kelsea Ballerini(MP3_160K).mp3'},
         { title: 'I Like Me Better',url:'Lauv - I Like Me Better [Official Audio](MP3_160K).mp3'},
     ];
+    
 
     function loadSong(index) {
         audioPlayer.src = songs[index].url;
@@ -109,7 +110,7 @@
         removeBtn.textContent = '❌';
         removeBtn.classList.add('btn', 'btn-danger', 'btn-sm', 'ms-2');
         removeBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevent triggering the li click event
+            e.stopPropagation();
             const index = parseInt(li.dataset.index);
             songs.splice(index, 1);
             li.remove();
@@ -173,7 +174,7 @@
     nextBtn.addEventListener('click', playNext);
     prevBtn.addEventListener('click', playPrev);
 
-    populateSearchResults(); // Ensure search results are populated initially
+    populateSearchResults();
 
     const body = document.body;
     let colorInterval;
@@ -195,11 +196,34 @@
 
     audioPlayer.addEventListener('pause', () => {
         clearInterval(colorInterval);
-        body.style.backgroundColor = ''; // Reset to default
+        body.style.backgroundColor = '';
     });
 
     audioPlayer.addEventListener('ended', () => {
         clearInterval(colorInterval);
-        body.style.backgroundColor = ''; // Reset to default
+        body.style.backgroundColor = '';
+    });
+
+    // Hide loading screen after page loads
+    window.addEventListener('load', () => {
+        console.log('Window loaded, hiding loading screen');
+        if (loadingScreen) {
+            loadingScreen.style.display = 'none';
+        } else {
+            console.log('Loading screen element not found');
+        }
+    });
+
+    // Handle search bar animation
+    searchBar.addEventListener('focus', () => {
+        searchBar.classList.add('expanded');
+    });
+
+    searchBar.addEventListener('blur', () => {
+        setTimeout(() => {
+            if (!searchBar.value) {
+                searchBar.classList.remove('expanded');
+            }
+        }, 200);
     });
 });
