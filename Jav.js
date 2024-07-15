@@ -11,6 +11,16 @@
     const progressBar = document.getElementById('progressBar');
     const currentTime = document.getElementById('currentTime');
     const duration = document.getElementById('duration');
+    const sidebar = document.getElementById('sidebar');
+    const Playlist = document.getElementById('playlist');
+    const sidebarToggleBtn = document.getElementById('sidebarToggleBtn');
+    const sidebarCloseBtn = document.getElementById('sidebarCloseBtn');
+    const usernameDisplay = document.getElementById('username');
+    const profileLink = document.getElementById('profileLink');
+    const profileUsername = document.getElementById('profileUsername');
+    const profileEmail = document.getElementById('profileEmail');
+    const profilePassword = document.getElementById('profilePassword');
+    const logoutButton = document.getElementById('logoutButton');
 
     let currentSongIndex = 0;
     let songs = [
@@ -58,6 +68,7 @@
         { title: 'Takeaway',url:'The Chainsmokers_ ILLENIUM - Takeaway (Official Video) ft. Lennon Stella(MP3_160K).mp3'},
         { title: 'This Feeling',url:'The Chainsmokers - This Feeling (Official Video) ft. Kelsea Ballerini(MP3_160K).mp3'},
         { title: 'I Like Me Better',url:'Lauv - I Like Me Better [Official Audio](MP3_160K).mp3'},
+        { title: 'Fire Burning-Sean Kingston',url: 'Fire Burning - Sean Kingston (Lyrics)(MP3_160K).mp3'},
     ];
 
     function loadSong(index) {
@@ -101,74 +112,91 @@
     }
 
     function addToPlaylist(song) {
+        if (!songs.some(s => s.url === song.url)) {
+            songs.push(song);
+            updatePlaylist();
+            if (songs.length === 1) {
+                loadSong(0);
+            }
+        }
+    }
+    function addToPlaylist(song) {
         songs.push(song);
         const li = document.createElement('li');
         li.textContent = song.title;
         li.classList.add('list-group-item', 'bg-dark', 'text-white', 'playlist-item');
         li.dataset.index = songs.length - 1;
         li.dataset.url = song.url;
-
-        const removeBtn = document.createElement('button');
-        removeBtn.textContent = '❌';
-        removeBtn.classList.add('btn', 'btn-danger', 'btn-sm', 'ms-2');
-        removeBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const index = parseInt(li.dataset.index);
-            songs.splice(index, 1);
-            li.remove();
-            updatePlaylist();
-            if (index === currentSongIndex) {
-                if (songs.length > 0) {
-                    currentSongIndex = (index % songs.length);
-                    loadSong(currentSongIndex);
-                    audioPlayer.play();
-                } else {
-                    audioPlayer.pause();
-                    audioPlayer.src = '';
-                    currentSongElement.textContent = 'Now Playing: None';
-                    playPauseBtn.textContent = '▶️';
-                }
-            }
-        });
-
-        li.appendChild(removeBtn);
-        li.addEventListener('click', () => {
-            currentSongIndex = parseInt(li.dataset.index);
-            loadSong(currentSongIndex);
-            audioPlayer.play();
-            playPauseBtn.textContent = '⏸️';
-        });
-        playlist.appendChild(li);
-        if (songs.length === 1) {
-            loadSong(0);
-        }
-    }
-
+    }    
     function updatePlaylist() {
-        const playlistItems = document.querySelectorAll('.playlist-item');
-        playlistItems.forEach((item, index) => {
-            item.dataset.index = index;
+        Playlist.innerHTML = '';
+        songs.forEach((song, index) => {
+            const li = document.createElement('li');
+            li.textContent = song.title;
+            li.classList.add('playlist-item');
+            li.dataset.index = index;
+
+            const removeBtn = document.createElement('button');
+            removeBtn.textContent = '❌';
+            removeBtn.classList.add('btn', 'btn-danger', 'btn-sm', 'ms-2');
+            removeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                songs.splice(index, 1);
+                updatePlaylist();
+                if (index === currentSongIndex) {
+                    if (songs.length > 0) {
+                        currentSongIndex = Math.min(index, songs.length - 1);
+                        loadSong(currentSongIndex);
+                        audioPlayer.play();
+                    } else {
+                        audioPlayer.pause();
+                        audioPlayer.src = '';
+                        currentSongElement.textContent = 'Now Playing: None';
+                        playPauseBtn.textContent = '▶️';
+                    }
+                }
+            });
+
+            li.appendChild(removeBtn);
+            li.addEventListener('click', () => {
+                currentSongIndex = index;
+                loadSong(currentSongIndex);
+                audioPlayer.play();
+                playPauseBtn.textContent = '⏸️';
+            });
+            playlist.appendChild(li);
         });
     }
 
     function populateSearchResults() {
+        let debounceTimeout;
         searchBar.addEventListener('input', () => {
-            const query = searchBar.value.toLowerCase();
-            searchResults.innerHTML = '';
-            if (query) {
-                const filteredResults = songs.filter(song => song.title.toLowerCase().includes(query));
-                filteredResults.forEach(song => {
-                    const li = document.createElement('li');
-                    li.textContent = song.title;
-                    li.classList.add('list-group-item', 'bg-dark', 'text-white', 'playlist-item');
-                    li.addEventListener('click', () => {
-                        addToPlaylist(song);
-                        searchBar.value = '';
-                        searchResults.innerHTML = '';
+            clearTimeout(debounceTimeout);
+            debounceTimeout = setTimeout(() => {
+                const query = searchBar.value.toLowerCase();
+                searchResults.innerHTML = '';
+                if (query) {
+                    const filteredResults = songs.filter(song => song.title.toLowerCase().includes(query));
+                    filteredResults.forEach(song => {
+                        const li = document.createElement('li');
+                        li.textContent = song.title;
+                        li.classList.add('playlist-item');
+                        li.addEventListener('click', () => {
+                            currentSongIndex = songs.findIndex(s => s.url === song.url);
+                            if (currentSongIndex === -1) {
+                                addToPlaylist(song);
+                                currentSongIndex = songs.findIndex(s => s.url === song.url);
+                            }
+                            loadSong(currentSongIndex);
+                            audioPlayer.play();
+                            playPauseBtn.textContent = '⏸️';
+                            searchBar.value = '';
+                            searchResults.innerHTML = '';
+                        });
+                        searchResults.appendChild(li);
                     });
-                    searchResults.appendChild(li);
-                });
-            }
+                }
+            }, 300);
         });
     }
 
@@ -187,11 +215,42 @@
         return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
     }
 
+    function updateUsername() {
+        const username = localStorage.getItem('username') || 'User';
+        usernameDisplay.textContent = username;
+        profileUsername.value = username;
+    }
+
+    function logout() {
+        localStorage.removeItem('username');
+        window.location.href = 'signup.html';
+    }
+
+    // Sidebar toggle logic
+    sidebarToggleBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+    });
+
+    sidebarCloseBtn.addEventListener('click', () => {
+        sidebar.classList.remove('open');
+    });
+
+    // Initialize player controls
     playPauseBtn.addEventListener('click', playPause);
     nextBtn.addEventListener('click', playNext);
     prevBtn.addEventListener('click', playPrev);
 
-    populateSearchResults();
+    // Handle profile link click
+    profileLink.addEventListener('click', () => {
+        $('#profileModal').modal('show');
+    });
+
+    // Populate profile modal with data
+    $('#profileModal').on('show.bs.modal', () => {
+        profileUsername.value = localStorage.getItem('username') || 'User';
+        profileEmail.value = localStorage.getItem('email') || 'user@example.com';
+        profilePassword.value = '';
+    });
 
     // Handle search bar animation
     searchBar.addEventListener('focus', () => {
@@ -215,19 +274,24 @@
     });
 
     // Update progress bar when audio ends
-    audioPlayer.addEventListener('ended', () => {
-        progressBar.value = 0;
-        currentTime.textContent = '0:00';
-        playPauseBtn.textContent = '▶️';
-    });
+    audioPlayer.addEventListener('ended', playNext);
 
-    // Hide loading screen after page loads
+    // Hide loading screen after page loads 
     window.addEventListener('load', () => {
-        console.log('Window loaded, hiding loading screen');
         if (loadingScreen) {
-            loadingScreen.style.display = 'none';
-        } else {
-            console.log('Loading screen element not found');
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 500);
         }
     });
+
+    // Example username update
+    updateUsername();
+
+    // Initialize playlist and search results
+    updatePlaylist();
+    populateSearchResults();
+
+    // Handle logout button
+    logoutButton.addEventListener('click', logout);
 });
