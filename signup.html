@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - Music On the Go</title>
+    <link rel="icon" href="Music ON THE GO.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1db954, #1b1b1b);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+        }
+
+        .form-container {
+            max-width: 400px;
+            width: 100%;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .form-container:hover {
+            transform: scale(1.02);
+        }
+
+        .logo-container {
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            width: 120px; /* Adjust size as needed */
+            border-radius: 50%;
+            margin: 0 auto;
+        }
+
+        .form-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #1db954;
+            font-weight: 600;
+        }
+
+        .signup-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .signup-form label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #ddd;
+            text-align: left;
+        }
+
+        .signup-form input {
+            margin-bottom: 15px;
+            padding: 12px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            font-size: 16px;
+            background: #222;
+            color: #fff;
+        }
+
+        .signup-form input::placeholder {
+            color: #888;
+        }
+
+        .submit-button {
+            padding: 12px;
+            background: #1db954;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .submit-button:hover {
+            background: #17a74a;
+            transform: scale(1.05);
+        }
+
+        .login-link {
+            margin-top: 15px;
+        }
+
+        .login-link a {
+            color: #1db954;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .show-password-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: #ddd;
+        }
+
+        .show-password-container input {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="logo-container">
+            <img src="Music ON THE GO.png" alt="Music On the Go Logo" class="logo">
+        </div>
+        <h1 class="form-title">Music On the Go</h1>
+        <form id="signupForm" class="signup-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Choose a username" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Create a password" required>
+            
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+
+            <!-- Show Password Checkbox -->
+            <div class="show-password-container">
+                <input type="checkbox" id="showPassword">
+                <label for="showPassword">Show Password</label>
+            </div>
+            
+            <button type="submit" class="submit-button">Sign Up</button>
+            
+            <p class="login-link">Already have an account? <a href="Login.html">Login</a></p>
+        </form>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const signupForm = document.getElementById('signupForm');
+            const showPasswordCheckbox = document.getElementById('showPassword');
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirm-password');
+
+            // Show/Hide Password functionality
+            showPasswordCheckbox.addEventListener('change', () => {
+                if (showPasswordCheckbox.checked) {
+                    passwordInput.type = 'text'; // Show password
+                    confirmPasswordInput.type = 'text'; // Show confirm password
+                } else {
+                    passwordInput.type = 'password'; // Hide password
+                    confirmPasswordInput.type = 'password'; // Hide confirm password
+                }
+            });
+
+            // Handle form submission
+            signupForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const username = document.getElementById('username').value;
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirm-password').value;
+
+                if (password !== confirmPassword) {
+                    alert('Passwords do not match!');
+                    return;
+                }
+
+                // Save user data
+                localStorage.setItem('username', username);
+                localStorage.setItem('email', email);
+                localStorage.setItem('password', password);
+
+                // Redirect to login page
+                window.location.href = 'Login.html';
+            });
+        });
+    </script>
+</body>
+</html>
