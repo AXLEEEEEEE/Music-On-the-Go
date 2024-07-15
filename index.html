@@ -3,105 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music On the Go</title>
+    <title>Login - Music On the Go</title>
     <link rel="icon" href="Music ON THE GO.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
-     
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #121212;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            max-width: 360px;
+            width: 100%;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .logo-container {
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            width: 120px; /* Adjust size as needed */
+            height: auto;
+        }
+
+        .form-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #1db954;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .login-form label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #bbb;
+            text-align: left;
+        }
+
+        .login-form input {
+            margin-bottom: 20px;
+            padding: 12px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            font-size: 16px;
+            background: #1e1e1e;
+            color: #fff;
+        }
+
+        .login-form input::placeholder {
+            color: #888;
+        }
+
+        .submit-button {
+            padding: 12px;
+            background: #1db954;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-button:hover {
+            background: #17a74a;
+        }
+
+        .signup-link {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .signup-link a {
+            color: #1db954;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <!-- Loading screen overlay -->
-    <div id="loadingScreen" class="loading-screen">
-        <img src="Music ON THE GO.png" alt="Loading..." class="loading-image">
-    </div>
-
-    <!-- Main Content -->
-    <div class="player-container">
-        <!-- Sidebar -->
-        <div class="sidebar" id="sidebar">
-            <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close Sidebar">×</button>
-            <div class="profile">
-                <img src="Music ON THE GO.png" alt="Profile Picture" class="profile-pic">
-                <p id="username">Username</p>
-            </div>
-            <a href="#" id="profileLink" data-toggle="modal" data-target="#profileModal">Profile</a>
-            <a href="Login.html" id="logoutLink">Logout</a>
-        </div>
-
-        <!-- Content -->
-        <div class="content">
-            <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Open Sidebar">☰</button>
+    <div class="form-container">
+        <div class="logo-container">
             <img src="Music ON THE GO.png" alt="Music On the Go Logo" class="logo">
-            <h1><b>MUSIC ON THE GO</b></h1>
-            <p>Your favorite music, Anytime, Anywhere.</p>
-            <div class="search-bar-container">
-                <input type="text" class="form-control" id="searchBar" placeholder="Search for a song...">
-            </div>
-            <ul class="search-results list-group" id="searchResults"></ul>
-            <audio id="audioPlayer" class="w-100" hidden>
-                <source src="" type="audio/mp3">
-                Your browser does not support the audio element.
-            </audio>
-            <div class="current-song" id="currentSong">Now Playing: None</div>
-            <!-- Progress bar and time display -->
-            <div class="progress-container">
-                <span id="currentTime">0:00</span>
-                <input type="range" id="progressBar" value="0" min="0" step="1">
-                <span id="duration">0:00</span>
-            </div>
-            <div class="controls">
-                <button id="prevBtn" aria-label="Previous Song">⏮️</button>
-                <button id="playPauseBtn" aria-label="Play/Pause">⏯️</button>
-                <button id="nextBtn" aria-label="Next Song">⏭️</button>
-            </div>
-            <ul class="playlist list-group" id="playlist">
-                <!-- Playlist items will be dynamically added here -->
-            </ul>
-            <footer><b>You Can Play Your Favorite Music<br>Created By: Axle Deleon</b></footer>
         </div>
+        <h1 class="form-title">Music On the Go</h1>
+        <form class="login-form" id="loginForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            
+            <!-- Show Password Checkbox -->
+            <div>
+                <input type="checkbox" id="showPassword">
+                <label for="showPassword">Show Password</label>
+            </div>
+            
+            <button type="submit" class="submit-button">Login</button>
+            
+            <p class="signup-link">Don't have an account? <a href="signup.html">Sign up</a></p>
+        </form>
     </div>
 
-    <!-- Profile Modal -->
-    <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="profileModalLabel">Profile Information</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="profileForm">
-                        <div class="form-group">
-                            <label for="profileUsername">Username</label>
-                            <input type="text" class="form-control" id="profileUsername" disabled>
-                        </div>
-                        <div class="form-group">
-                            <label for="profileEmail">Email</label>
-                            <input type="email" class="form-control" id="profileEmail" disabled>
-                        </div>
-                        <div class="form-group">
-                            <label for="profilePassword">Password</label>
-                            <input type="password" class="form-control" id="profilePassword" disabled>
-                        </div>
-                        <!-- Add more fields as necessary -->
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <!-- You can add a save button if you want to allow edits -->
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const showPasswordCheckbox = document.getElementById('showPassword');
+            const passwordInput = document.getElementById('password');
+            const loginForm = document.getElementById('loginForm');
 
-    <!-- JavaScript dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- Your custom JavaScript -->
-    <script src="Jav.js"></script>
+            // Show/Hide Password functionality
+            showPasswordCheckbox.addEventListener('change', () => {
+                if (showPasswordCheckbox.checked) {
+                    passwordInput.type = 'text'; // Show password
+                } else {
+                    passwordInput.type = 'password'; // Hide password
+                }
+            });
+
+            // Handle form submission
+            loginForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                // Retrieve stored user data
+                const storedUsername = localStorage.getItem('username');
+                const storedEmail = localStorage.getItem('email');
+                const storedPassword = localStorage.getItem('password');
+
+                // Get entered data
+                const username = document.getElementById('username').value;
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+
+                // Validate user credentials
+                if (username === storedUsername && email === storedEmail && password === storedPassword) {
+                    // Redirect to the main website or dashboard
+                    window.location.href = 'index.html'; // Replace with your website URL
+                } else {
+                    alert('Invalid login credentials!');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
